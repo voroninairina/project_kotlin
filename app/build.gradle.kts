@@ -56,4 +56,16 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
+    // Navigation
+    implementation(libs.bundles.navigation3)
+    implementation(libs.kotlinx.serialization.core)
+
+    // image loading
+    implementation(libs.glide)
+    implementation(libs.glide.compose)
+
+    // DI
+    implementation(libs.bundles.koin)
 }
