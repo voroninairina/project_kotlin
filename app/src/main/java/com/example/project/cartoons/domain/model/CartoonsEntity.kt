@@ -1,9 +1,6 @@
-package com.example.project.cartoons.presentation.model
+package com.example.project.cartoons.domain.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class CartoonsUiModel(
+class CartoonsEntity(
     val id: String,
     val name: String,
     val status: String?,

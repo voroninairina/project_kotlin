@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
@@ -22,6 +24,7 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageShader
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -76,24 +79,26 @@ fun CartoonsDetailsContent(
             GlideImage(
                 model = state.cartoons.imageUrl,
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.Fit,
+                modifier = Modifier.size(120.dp).clip(CircleShape),
+                contentScale = ContentScale.Crop,
             )
         }
 
         Icon(
-            Icons.Default.Share,
-            null,
-            Modifier.clickable {
+            imageVector = Icons.Default.Share,
+            contentDescription = null,
+            modifier = Modifier.clickable {
                 shareText(context, state.cartoons.name)
             }
         )
 
-        Text(
-            text = state.cartoons.status,
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
+        state.cartoons.status?.let {
+            Text(
+                text = "Статус: ${it}",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
 
         Text(
             text = state.cartoons.name,

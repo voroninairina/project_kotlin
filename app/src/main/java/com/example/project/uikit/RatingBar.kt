@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -22,7 +23,7 @@ fun RatingBar(
         for (i in 1..maxRating) {
             IconButton(onClick = { onRatingChanged(i.toFloat()) }) {
                 Icon(
-                    imageVector = if (i <= rating) Icons.Filled.Star else Icons.Outlined.Close,
+                    imageVector = if (i <= rating) Icons.Filled.Star else Icons.Outlined.StarRate,
                     contentDescription = null,
                 )
             }

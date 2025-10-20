@@ -9,6 +9,4 @@ import com.example.project.navigation.TopLevelBackStack
 
 val mainModule = module {
     single { TopLevelBackStack<Route>(Cartoons) }
-
-    viewModel { CartoonsDetailsViewModel(get(), get()) }
 }

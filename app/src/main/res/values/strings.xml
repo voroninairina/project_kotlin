@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">project</string>
+    <string name="error_occured">Произошла ошибка</string>
 </resources>
