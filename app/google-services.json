@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910985752925",
+    "project_id": "cartoonsvoronina",
+    "storage_bucket": "cartoonsvoronina.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910985752925:android:33057f0901ae060f07f8b4",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmTbe3AVGzbSnDC7OZryvAro7jmjaE-SY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
