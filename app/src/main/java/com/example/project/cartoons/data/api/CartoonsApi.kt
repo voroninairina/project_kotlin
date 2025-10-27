@@ -6,5 +6,5 @@ import retrofit2.http.Query
 
 interface CartoonsApi {
     @GET("documents/Cartoons")
-    suspend fun getCartoons(): CartoonsListResponse
+    suspend fun getCartoons( @Query("orderBy") orderBy: String): CartoonsListResponse
 }
