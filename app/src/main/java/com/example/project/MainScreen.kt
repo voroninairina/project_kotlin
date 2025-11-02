@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -27,6 +28,7 @@ import androidx.navigation3.ui.NavDisplay
 import com.example.project.cartoons.presentation.model.CartoonsUiModel
 import com.example.project.cartoons.presentation.screen.CartoonsDetailsDialog
 import com.example.project.cartoons.presentation.screen.CartoonsListScreen
+import com.example.project.cartoons.presentation.screen.CartoonsSettingsDialog
 import com.example.project.navigation.Route
 import com.example.project.navigation.TopLevelBackStack
 import org.koin.java.KoinJavaComponent.inject
@@ -36,7 +38,7 @@ interface TopLevelRoute: Route {
     val icon: ImageVector
 }
 data object Characters: TopLevelRoute {
-    override val icon = Icons.Default.Favorite
+    override val icon = Icons.Default.Home
 }
 
 data object Cartoons: TopLevelRoute {
@@ -44,6 +46,8 @@ data object Cartoons: TopLevelRoute {
 }
 
 data class CartoonsDetails(val cartoons: CartoonsUiModel) : Route
+
+data object CartoonsSettings : Route
 
 @Composable
 fun MainScreen() {
@@ -75,7 +79,7 @@ fun MainScreen() {
             entryProvider = entryProvider {
                 entry<Characters> {
                     Text(
-                        text = "Избранные персонажи",
+                        text = "Главная страница",
                         modifier = Modifier
                             .fillMaxSize()
                     )
@@ -87,6 +91,11 @@ fun MainScreen() {
                     metadata = DialogSceneStrategy.dialog(DialogProperties())
                 ) {
                     CartoonsDetailsDialog(it.cartoons)
+                }
+                entry<CartoonsSettings> (
+                    metadata = DialogSceneStrategy.dialog(DialogProperties())
+                ){
+                    CartoonsSettingsDialog()
                 }
             }
         )
