@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
@@ -26,6 +27,8 @@ import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.scene.DialogSceneStrategy
 import androidx.navigation3.ui.NavDisplay
 import com.example.project.cartoons.presentation.model.CartoonsUiModel
+import com.example.project.cartoons.presentation.profile.screen.EditProfileScreen
+import com.example.project.cartoons.presentation.profile.screen.ProfileScreen
 import com.example.project.cartoons.presentation.screen.CartoonsDetailsDialog
 import com.example.project.cartoons.presentation.screen.CartoonsListScreen
 import com.example.project.cartoons.presentation.screen.CartoonsSettingsDialog
@@ -37,8 +40,8 @@ import kotlin.getValue
 interface TopLevelRoute: Route {
     val icon: ImageVector
 }
-data object Characters: TopLevelRoute {
-    override val icon = Icons.Default.Home
+data object Profile: TopLevelRoute {
+    override val icon = Icons.Default.AccountCircle
 }
 
 data object Cartoons: TopLevelRoute {
@@ -49,6 +52,8 @@ data class CartoonsDetails(val cartoons: CartoonsUiModel) : Route
 
 data object CartoonsSettings : Route
 
+data object EditProfileRoute : Route
+
 @Composable
 fun MainScreen() {
     val topLevelBackStack by inject<TopLevelBackStack<Route>>(clazz = TopLevelBackStack::class.java)
@@ -56,7 +61,7 @@ fun MainScreen() {
 
     Scaffold(bottomBar = {
         NavigationBar {
-            listOf(Characters, Cartoons).forEach { route ->
+            listOf(Profile, Cartoons).forEach { route ->
                 NavigationBarItem(
                     icon = { Icon(route.icon, null) },
                     selected = topLevelBackStack.topLevelKey == route,
@@ -77,12 +82,8 @@ fun MainScreen() {
                 rememberViewModelStoreNavEntryDecorator()
             ),
             entryProvider = entryProvider {
-                entry<Characters> {
-                    Text(
-                        text = "Главная страница",
-                        modifier = Modifier
-                            .fillMaxSize()
-                    )
+                entry<Profile> {
+                    ProfileScreen().Content(modifier = Modifier.fillMaxSize())
                 }
                 entry<Cartoons> {
                     CartoonsListScreen(topLevelBackStack)
@@ -96,6 +97,10 @@ fun MainScreen() {
                     metadata = DialogSceneStrategy.dialog(DialogProperties())
                 ){
                     CartoonsSettingsDialog()
+                }
+
+                entry<EditProfileRoute> {
+                    EditProfileScreen().Content(modifier = Modifier.fillMaxSize())
                 }
             }
         )
