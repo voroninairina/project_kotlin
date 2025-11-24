@@ -26,6 +26,8 @@ chucker = "4.2.0"
 room = "2.8.2"
 datastorepreferences = "1.1.7"
 material3 = "1.4.0"
+threetenabp = "1.4.7"
+compiler = "3.2.0-alpha11"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -67,7 +69,8 @@ modo-compose = { module = "com.github.terrakok:modo-compose", version.ref = "mod
 androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobufJavalite" }
 protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
-
+threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "threetenabp" }
+androidx-compiler = { group = "androidx.databinding", name = "compiler", version.ref = "compiler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

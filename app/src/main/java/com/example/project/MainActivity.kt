@@ -12,11 +12,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.project.ui.theme.ProjectTheme
+import androidx.core.app.NotificationManagerCompat
+import com.example.project.cartoons.presentation.profile.channelManager.NotificationChannelManager
 
 class MainActivity : ComponentActivity() {
+
+    private val channelManager: NotificationChannelManager by lazy {
+        NotificationChannelManager(NotificationManagerCompat.from(this), this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        channelManager.createNotificationChannels()
         setContent {
             ProjectTheme {
                 MainScreen()
