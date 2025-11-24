@@ -12,11 +12,16 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import com.example.project.navigation.Route
 import com.example.project.navigation.TopLevelBackStack
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 
 val mainModule = module {
     single { TopLevelBackStack<Route>(Cartoons) }
     single { getDataStore(androidContext()) }
+    single<android.content.Context> {
+        // Используйте androidApplication() вместо androidContext()
+        androidApplication().applicationContext
+    }
 }
 
 fun getDataStore (androidContext : Context): DataStore<Preferences> =

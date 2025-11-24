@@ -17,23 +17,25 @@ import com.example.project.cartoons.presentation.viewModel.CartoonsSettingsViewM
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import org.koin.android.ext.koin.androidContext
 import retrofit2.Retrofit
 
 
 val cartoonsFeatureModule = module {
     single { get<Retrofit>().create(CartoonsApi::class.java) }
+    //single<android.content.Context> { androidContext() }
 
     factory { CartoonsResponseToEntityMapper() }
     single { CartoonsRepository(get(), get(), get(), get()) }
 
     single { CartoonsInteractor(get()) }
 
-    factory<DataStore<ProfileEntity>>(named("profile")) { DataSourceProvider(get()).provide() }
-    single<IProfileRepository> { ProfileRepository() }
+    //factory<DataStore<ProfileEntity>>(named("profile")) { DataSourceProvider(get()).provide() }
+    //single<IProfileRepository> { ProfileRepository() }
 
     viewModel { CartoonsListViewModel(get(), get()) }
     viewModel { CartoonsDetailsViewModel(get(), get(), get()) }
     viewModel { CartoonsSettingsViewModel(get(), get()) }
-    viewModel { ProfileViewModel(get()) }
-    viewModel { EditProfileViewModel (get()) }
+    //viewModel { ProfileViewModel(get()) }
+    viewModel { EditProfileViewModel(get(), get()) }
 }
